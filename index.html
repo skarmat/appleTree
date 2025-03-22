@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Apple Tree - Luxury Experience in Ladakh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="font-sans">
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="#home" class="logo"> <span>Hotel Apple Tree</span></a>
+        <div class="nav-links">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#rooms" class="nav-link">Rooms</a>
+          <a href="#amenities" class="nav-link">Amenities</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+      <div class="mobile-menu-header">
+        <a href="#home" class="logo"><span>Hotel Apple Tree</span></a>
+        <button class="mobile-menu-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="mobile-menu-links">
+        <a href="#home" class="mobile-menu-link">Home</a>
+        <a href="#rooms" class="mobile-menu-link">Rooms</a>
+        <a href="#amenities" class="mobile-menu-link">Amenities</a>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="slider">
+        <div class="slide active">
+          <img
+            src="assets/images/IMG_7348_Original.jpg"
+            alt="Hotel Apple Tree Ladakh"
+            class="hero-image"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="assets/images/IMG_7319_Original.jpg"
+            alt="Hotel Apple Tree Room"
+            class="hero-image"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="assets/images/IMG_7307_Original.jpg"
+            alt="Hotel Apple Tree View"
+            class="hero-image"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="assets/images/IMG_7309_Original.jpg"
+            alt="Hotel Apple Tree Suite"
+            class="hero-image"
+          />
+        </div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Hotel Apple Tree</h1>
+        <p class="hero-description">
+          Experience luxury and comfort in the heart of Ladakh
+        </p>
+        <p class="hero-tagline">Where Luxury Meets Serenity</p>
+        <a href="#rooms" class="button hero-button">Book Now</a>
+      </div>
+      <div class="scroll-indicator">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+        </svg>
+      </div>
+      <div class="slider-controls">
+        <div class="slider-dots"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl font-serif mb-8 text-[#B22222]">
+            Welcome to Hotel Apple Tree
+          </h2>
+          <p class="text-black mb-8">
+            Located in the heart of Ladakh, Hotel Apple Tree offers a perfect
+            blend of luxury and comfort. Our hotel features premium rooms with
+            private balconies offering panoramic views of the surrounding
+            mountains and cityscape.
+          </p>
+          <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <div class="text-center">
+              <i class="fas fa-mountain text-4xl mb-4 text-[#B22222]"></i>
+              <h3 class="text-xl font-serif mb-2 text-[#B22222]">
+                Mountain Views
+              </h3>
+              <p class="text-black">Stunning views of snow-capped mountains</p>
+            </div>
+            <div class="text-center">
+              <i class="fas fa-city text-4xl mb-4 text-[#B22222]"></i>
+              <h3 class="text-xl font-serif mb-2 text-[#B22222]">
+                City Access
+              </h3>
+              <p class="text-black">Walking distance from Leh market</p>
+            </div>
+            <div class="text-center">
+              <i class="fas fa-star text-4xl mb-4 text-[#B22222]"></i>
+              <h3 class="text-xl font-serif mb-2 text-[#B22222]">
+                Luxury Comfort
+              </h3>
+              <p class="text-black">Premium amenities and services</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="py-20 bg-black">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-serif text-center mb-16 text-white">
+          Our Rooms
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Premium Room -->
+          <div
+            class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale"
+          >
+            <img
+              src="assets/images/IMG_7319_Original.jpg"
+              alt="Premium Room"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-2xl font-serif mb-2 text-[#2C3E50]">
+                Premium Room
+              </h3>
+              <p class="text-gray-600 mb-4">Starting from INR 8,500</p>
+              <ul class="text-gray-600 mb-4">
+                <li>• Private balcony with mountain view</li>
+                <li>• King-size bed</li>
+                <li>• Modern amenities</li>
+                <li>• En-suite bathroom</li>
+              </ul>
+              <a href="#" class="text-[#E67E22] hover:text-[#D35400]"
+                >View Details →</a
+              >
+            </div>
+          </div>
+          <!-- Executive Room -->
+          <div
+            class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale"
+          >
+            <img
+              src="assets/images/IMG_7307_Original.jpg"
+              alt="Executive Room"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-2xl font-serif mb-2 text-[#2C3E50]">
+                Executive Room
+              </h3>
+              <p class="text-gray-600 mb-4">Starting from INR 9,500</p>
+              <ul class="text-gray-600 mb-4">
+                <li>• Premium balcony with city view</li>
+                <li>• Luxury amenities</li>
+                <li>• Enhanced comfort</li>
+                <li>• Spacious bathroom</li>
+              </ul>
+              <a href="#" class="text-[#E67E22] hover:text-[#D35400]"
+                >View Details →</a
+              >
+            </div>
+          </div>
+          <!-- Presidential Suite -->
+          <div
+            class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale"
+          >
+            <img
+              src="assets/images/IMG_7309_Original.jpg"
+              alt="Presidential Suite"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-2xl font-serif mb-2 text-[#2C3E50]">
+                Presidential Suite
+              </h3>
+              <p class="text-gray-600 mb-4">Starting from INR 20,000</p>
+              <ul class="text-gray-600 mb-4">
+                <li>• Luxury suite with private terrace</li>
+                <li>• Premium amenities</li>
+                <li>• Panoramic views</li>
+                <li>• Separate living area</li>
+              </ul>
+              <a href="#" class="text-[#E67E22] hover:text-[#D35400]"
+                >View Details →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-serif text-center mb-16 text-[#B22222]">
+          Amenities & Facilities
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="text-center p-6 bg-white rounded-lg shadow-lg hover-scale"
+          >
+            <i class="fas fa-parking text-4xl mb-4 text-[#B22222]"></i>
+            <h3 class="text-xl font-serif mb-2 text-[#B22222]">Parking</h3>
+            <p class="text-black font-light">
+              We offer ample space for parking.
+            </p>
+          </div>
+          <div
+            class="text-center p-6 bg-white rounded-lg shadow-lg hover-scale"
+          >
+            <i class="fas fa-elevator text-4xl mb-4 text-[#B22222]"></i>
+            <h3 class="text-xl font-serif mb-2 text-[#B22222]">Elevator</h3>
+            <p class="text-black font-light">
+              We have an elevator for your convenience.
+            </p>
+          </div>
+          <div
+            class="text-center p-6 bg-white rounded-lg shadow-lg hover-scale"
+          >
+            <i class="fas fa-tint text-4xl mb-4 text-[#B22222]"></i>
+            <h3 class="text-xl font-serif mb-2 text-[#B22222]">
+              Hot & Cold water
+            </h3>
+            <p class="text-black font-light">
+              We have hot and cold water available 24/7.
+            </p>
+          </div>
+          <div
+            class="text-center p-6 bg-white rounded-lg shadow-lg hover-scale"
+          >
+            <i class="fas fa-map-marker-alt text-4xl mb-4 text-[#B22222]"></i>
+            <h3 class="text-xl font-serif mb-2 text-[#B22222]">
+              Prime Location
+            </h3>
+            <p class="text-black font-light">
+              Walking distance from Leh market
+            </p>
+          </div>
+          <div
+            class="text-center p-6 bg-white rounded-lg shadow-lg hover-scale"
+          >
+            <i class="fas fa-star text-4xl mb-4 text-[#B22222]"></i>
+            <h3 class="text-xl font-serif mb-2 text-[#B22222]">
+              Good Hospitality
+            </h3>
+            <p class="text-black font-light">
+              Committed to providing unparalleled hospitality.
+            </p>
+          </div>
+          <div
+            class="text-center p-6 bg-white rounded-lg shadow-lg hover-scale"
+          >
+            <i class="fas fa-clock text-4xl mb-4 text-[#B22222]"></i>
+            <h3 class="text-xl font-serif mb-2 text-[#B22222]">
+              Attention to Detail
+            </h3>
+            <p class="text-black font-light">
+              At Hotel Apple tree, we believe it's the little things that make a
+              big difference.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-serif text-center mb-16 text-white">
+          Contact Us
+        </h2>
+        <div class="max-w-2xl mx-auto">
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center">
+                <i class="fas fa-phone text-[#B22222] mr-4"></i>
+                <p class="text-black">+91-8492833171</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-globe text-[#B22222] mr-4"></i>
+                <p class="text-black">www.theappletreeladakh.com</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-envelope text-[#B22222] mr-4"></i>
+                <p class="text-black">theappletreeladakh@gmail.com</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-map-marker-alt text-[#B22222] mr-4"></i>
+                <p class="text-black">
+                  Hotel Apple Tree, Khaksal, Leh Ladakh – 194101
+                </p>
+              </div>
+            </div>
+            <form class="space-y-6">
+              <div>
+                <label class="block text-black mb-2">Name</label>
+                <input
+                  type="text"
+                  class="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:border-[#B22222]"
+                />
+              </div>
+              <div>
+                <label class="block text-black mb-2">Email</label>
+                <input
+                  type="email"
+                  class="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:border-[#B22222]"
+                />
+              </div>
+              <div>
+                <label class="block text-black mb-2">Message</label>
+                <textarea
+                  class="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:border-[#B22222]"
+                  rows="4"
+                ></textarea>
+              </div>
+              <button
+                class="w-full bg-[#B22222] text-white py-3 rounded-lg hover:bg-black transition duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-2xl font-serif mb-4 text-white">
+              Hotel Apple Tree
+            </h3>
+            <p class="text-white opacity-80">
+              Experience luxury and comfort in the heart of Ladakh.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-serif mb-4 text-white">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  class="text-white opacity-80 hover:text-[#B22222]"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#rooms"
+                  class="text-white opacity-80 hover:text-[#B22222]"
+                  >Rooms</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#amenities"
+                  class="text-white opacity-80 hover:text-[#B22222]"
+                  >Amenities</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-white opacity-80 hover:text-[#B22222]"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-serif mb-4 text-white">Contact Info</h4>
+            <ul class="space-y-2 text-white opacity-80">
+              <li>Hotel Apple Tree</li>
+              <li>Khaksal, Leh Ladakh</li>
+              <li>Phone: +91-8492833171</li>
+              <li>Email: theappletreeladakh@gmail.com</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-serif mb-4 text-white">Follow Us</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white opacity-80 hover:text-[#B22222]"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-white opacity-80 hover:text-[#B22222]"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-white opacity-80 hover:text-[#B22222]"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-white/10 mt-8 pt-8 text-center text-white opacity-80"
+        >
+          <p>&copy; 2024 Hotel Apple Tree. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
