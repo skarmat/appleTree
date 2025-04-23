@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Hero Slider Setup
   const slider = document.querySelector(".slider");
   const slides = document.querySelectorAll(".slide");
   const dotsContainer = document.querySelector(".slider-dots");
-
   let currentSlide = 0;
   const slideCount = slides.length;
+  const slideInterval = 5000; // Change slide every 5 seconds
+  let autoSlideInterval;
 
   // Create dots
   slides.forEach((_, index) => {
@@ -18,9 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const dots = document.querySelectorAll(".dot");
 
   function updateSlider() {
-    // Update slides
+    // Update slides with smooth transitions
     slides.forEach((slide, index) => {
-      slide.classList.toggle("active", index === currentSlide);
+      if (index === currentSlide) {
+        slide.classList.add("active");
+        slide.style.transform = "scale(1)";
+        slide.style.opacity = "1";
+      } else {
+        slide.classList.remove("active");
+        slide.style.transform = "scale(1.05)";
+        slide.style.opacity = "0";
+      }
     });
 
     // Update dots
@@ -30,43 +40,101 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function goToSlide(index) {
-    currentSlide = index;
+    currentSlide = (index + slideCount) % slideCount;
     updateSlider();
   }
 
   function nextSlide() {
-    currentSlide = (currentSlide + 1) % slideCount;
-    updateSlider();
+    goToSlide(currentSlide + 1);
   }
 
-  // Start auto-sliding immediately
-  let slideInterval = setInterval(nextSlide, 3000);
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, slideInterval);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  // Initialize slider
+  updateSlider();
+  startAutoSlide();
 
   // Pause on hover
-  slider.addEventListener("mouseenter", () => {
-    clearInterval(slideInterval);
-  });
+  slider.addEventListener("mouseenter", stopAutoSlide);
+  slider.addEventListener("mouseleave", startAutoSlide);
 
-  slider.addEventListener("mouseleave", () => {
-    slideInterval = setInterval(nextSlide, 3000);
-  });
+  // Mobile touch support
+  let touchStartX = 0;
+  let touchEndX = 0;
 
-  // Initial update
-  updateSlider();
+  slider.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoSlide();
+    },
+    false
+  );
 
-  // Navigation scroll behavior
-  const nav = document.querySelector(".nav");
+  slider.addEventListener(
+    "touchend",
+    (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+      startAutoSlide();
+    },
+    false
+  );
 
-  function handleScroll() {
-    if (window.scrollY > 50) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const difference = touchStartX - touchEndX;
+
+    if (Math.abs(difference) > swipeThreshold) {
+      if (difference > 0) {
+        // Swipe left - next slide
+        goToSlide(currentSlide + 1);
+      } else {
+        // Swipe right - previous slide
+        goToSlide(currentSlide - 1);
+      }
     }
   }
 
-  // Initial check
-  handleScroll();
+  // Navigation scroll behavior
+  let lastScrollY = window.scrollY;
+  let lastScrollTime = Date.now();
+  const scrollThreshold = 100; // minimum scroll distance to trigger header
+  const timeThreshold = 150; // minimum time between scrolls to consider "stopped" scrolling
+
+  function handleScroll() {
+    const nav = document.querySelector(".nav");
+    const currentScrollY = window.scrollY;
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastScrollTime;
+    const scrollingUp = currentScrollY < lastScrollY;
+
+    // Show header only when scrolling down and past threshold
+    if (
+      currentScrollY > scrollThreshold &&
+      !scrollingUp &&
+      Math.abs(currentScrollY - lastScrollY) > 0
+    ) {
+      nav.classList.add("visible");
+      lastScrollTime = currentTime;
+    }
+    // Hide header when scrolling up, stopped scrolling, or near top
+    else if (
+      scrollingUp ||
+      timeDiff > timeThreshold ||
+      currentScrollY <= scrollThreshold
+    ) {
+      nav.classList.remove("visible");
+    }
+
+    lastScrollY = currentScrollY;
+  }
 
   // Add scroll event listener with throttling
   let ticking = false;
@@ -89,13 +157,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openMobileMenu() {
     mobileMenu.classList.add("active");
-    mobileMenuOverlay.classList.add("active");
+    mobileMenuOverlay.style.display = "block";
     document.body.style.overflow = "hidden";
   }
 
   function closeMobileMenu() {
     mobileMenu.classList.remove("active");
-    mobileMenuOverlay.classList.remove("active");
+    mobileMenuOverlay.style.display = "none";
     document.body.style.overflow = "";
   }
 
@@ -106,5 +174,72 @@ document.addEventListener("DOMContentLoaded", function () {
   // Close mobile menu when clicking a link
   mobileMenuLinks.forEach((link) => {
     link.addEventListener("click", closeMobileMenu);
+  });
+
+  // Smooth Scroll
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        // Close mobile menu if open
+        closeMobileMenu();
+      }
+    });
+  });
+
+  // Scroll Animation
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate");
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements with animation
+  document.querySelectorAll(".hover-scale").forEach((el) => {
+    observer.observe(el);
+  });
+
+  // Form Validation
+  const form = document.querySelector("form");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = form.querySelector('input[type="text"]').value;
+      const email = form.querySelector('input[type="email"]').value;
+      const message = form.querySelector("textarea").value;
+
+      if (!name || !email || !message) {
+        alert("Please fill in all fields");
+        return;
+      }
+
+      // Here you would typically send the form data to a server
+      alert("Thank you for your message! We will get back to you soon.");
+      form.reset();
+    });
+  }
+
+  // Add loading animation to images
+  document.querySelectorAll("img").forEach((img) => {
+    if (!img.complete) {
+      img.style.opacity = "0";
+      img.addEventListener("load", () => {
+        img.style.transition = "opacity 0.5s ease";
+        img.style.opacity = "1";
+      });
+    }
   });
 });
