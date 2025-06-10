@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+:root {
+  --accent-gold: #ffd700;
+  --accent-gold-light: #ffe44d;
+  --bg-light: #ffffff;
+}
