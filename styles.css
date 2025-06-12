@@ -228,6 +228,8 @@ textarea:focus {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -363,6 +365,8 @@ p {
   position: relative;
   height: 100vh;
   width: 100%;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .slide {
@@ -375,6 +379,8 @@ p {
   transform: scale(1.05);
   transition: opacity 1.5s ease-in-out, transform 2s ease-in-out;
   z-index: 1;
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 .slide.active {
@@ -400,6 +406,9 @@ p {
   object-position: center;
   filter: brightness(1);
   display: block;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .hero-content {
@@ -538,6 +547,8 @@ section::before {
   z-index: 1000;
   transition: right 0.3s ease;
   overflow-y: auto;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .mobile-menu.active {
@@ -1104,4 +1115,14 @@ section.hero {
 
 .whatsapp-float i {
   margin-top: 2px;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -6,14 +6,26 @@
     <title>Hotel Apple Tree - Luxury Experience in Ladakh</title>
     <link rel="icon" type="image/png" href="assets/images/logo_trans.png" />
     <link rel="stylesheet" href="dist/output.css" />
+    <!-- Preload critical assets -->
+    <link
+      rel="preload"
+      href="assets/images/logo_white_appletree.png"
+      as="image"
+    />
+    <link rel="preload" href="assets/images/logo_trans.png" as="image" />
+    <!-- Defer non-critical CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      media="print"
+      onload="this.media='all'"
     />
     <link rel="stylesheet" href="styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <script src="script.js" defer></script>
   </head>
@@ -26,6 +38,7 @@
             src="assets/images/logo_white_appletree.png"
             alt="Apple Tree Logo"
             class="w-10 h-10 mr-2 inline-block"
+            loading="eager"
           />
           Hotel Apple Tree
         </a>
@@ -66,6 +79,9 @@
             src="assets/images/IMG_7348_Original.jpg"
             alt="Hotel Apple Tree Ladakh"
             class="hero-image"
+            loading="eager"
+            width="1920"
+            height="1080"
           />
         </div>
         <div class="slide">
@@ -73,6 +89,9 @@
             src="assets/images/IMG_7319_Original.jpg"
             alt="Hotel Apple Tree Room"
             class="hero-image"
+            loading="lazy"
+            width="1920"
+            height="1080"
           />
         </div>
         <div class="slide">
@@ -80,6 +99,9 @@
             src="assets/images/IMG_7307_Original.jpg"
             alt="Hotel Apple Tree View"
             class="hero-image"
+            loading="lazy"
+            width="1920"
+            height="1080"
           />
         </div>
         <div class="slide">
@@ -87,6 +109,9 @@
             src="assets/images/IMG_7309_Original.jpg"
             alt="Hotel Apple Tree Suite"
             class="hero-image"
+            loading="lazy"
+            width="1920"
+            height="1080"
           />
         </div>
       </div>
@@ -172,6 +197,9 @@
               src="assets/images/PremiumRoom.jpg"
               alt="Premium Room"
               class="w-full h-64 object-cover"
+              loading="lazy"
+              width="800"
+              height="600"
             />
             <div class="p-6">
               <h3 class="text-2xl font-serif mb-2">Premium Room</h3>
@@ -195,6 +223,9 @@
               src="assets/images/ExecutiveRoom.jpg"
               alt="Executive Room"
               class="w-full h-64 object-cover"
+              loading="lazy"
+              width="800"
+              height="600"
             />
             <div class="p-6">
               <h3 class="text-2xl font-serif mb-2">Executive Room</h3>
@@ -218,6 +249,9 @@
               src="assets/images/PresidentialSuite.jpg"
               alt="Presidential Suite"
               class="w-full h-64 object-cover"
+              loading="lazy"
+              width="800"
+              height="600"
             />
             <div class="p-6">
               <h3 class="text-2xl font-serif mb-2">Presidential Suite</h3>
