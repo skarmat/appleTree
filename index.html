@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
     <meta
       name="description"
       content="Hotel Apple Tree - Luxury Experience in Ladakh"
@@ -15,9 +18,20 @@
       rel="preload"
       href="assets/images/logo_white_appletree.png"
       as="image"
+      fetchpriority="high"
     />
-    <link rel="preload" href="assets/images/logo_trans.png" as="image" />
-    <link rel="preload" href="assets/images/IMG_7348_Original.jpg" as="image" />
+    <link
+      rel="preload"
+      href="assets/images/logo_trans.png"
+      as="image"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      href="assets/images/IMG_7348_Original.jpg"
+      as="image"
+      fetchpriority="high"
+    />
     <!-- Defer non-critical CSS -->
     <link
       rel="stylesheet"
@@ -36,6 +50,20 @@
     <script src="script.js" defer></script>
     <!-- Preload non-critical JavaScript -->
     <link rel="preload" href="script.js" as="script" />
+    <!-- Add connection-aware loading -->
+    <script>
+      if ("connection" in navigator) {
+        if (navigator.connection.saveData) {
+          document.documentElement.classList.add("save-data");
+        }
+        if (
+          navigator.connection.effectiveType === "slow-2g" ||
+          navigator.connection.effectiveType === "2g"
+        ) {
+          document.documentElement.classList.add("low-bandwidth");
+        }
+      }
+    </script>
   </head>
   <body class="font-sans">
     <!-- Navigation -->
@@ -88,8 +116,10 @@
             alt="Hotel Apple Tree Ladakh"
             class="hero-image"
             loading="eager"
+            fetchpriority="high"
             width="1920"
             height="1080"
+            decoding="async"
           />
         </div>
         <div class="slide">
@@ -101,6 +131,7 @@
             loading="lazy"
             width="1920"
             height="1080"
+            decoding="async"
           />
         </div>
         <div class="slide">
@@ -112,6 +143,7 @@
             loading="lazy"
             width="1920"
             height="1080"
+            decoding="async"
           />
         </div>
         <div class="slide">
@@ -123,6 +155,7 @@
             loading="lazy"
             width="1920"
             height="1080"
+            decoding="async"
           />
         </div>
       </div>

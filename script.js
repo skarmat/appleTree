@@ -6,7 +6,49 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeSmoothScroll();
   initializeFormValidation();
   initializeImageLoading();
+  initializeScrollNav();
 });
+
+// Navigation scroll behavior
+function initializeScrollNav() {
+  const nav = document.querySelector(".nav");
+  let lastScrollY = window.scrollY;
+  let scrollTimeout;
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY;
+    const scrollingDown = currentScrollY > lastScrollY;
+    const scrolledPastThreshold = currentScrollY > 100;
+
+    // Show nav when scrolling down and past threshold
+    if (scrollingDown && scrolledPastThreshold) {
+      nav.classList.add("visible");
+    }
+    // Hide nav when scrolling up or at the top
+    else if (!scrollingDown || currentScrollY <= 100) {
+      nav.classList.remove("visible");
+    }
+
+    lastScrollY = currentScrollY;
+  }
+
+  // Throttle scroll events
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollTimeout) {
+        scrollTimeout = setTimeout(() => {
+          handleScroll();
+          scrollTimeout = null;
+        }, 100);
+      }
+    },
+    { passive: true }
+  );
+
+  // Initial check
+  handleScroll();
+}
 
 // Slider functionality
 function initializeSlider() {
@@ -159,6 +201,10 @@ function initializeFormValidation() {
 
 // Image loading optimization
 function initializeImageLoading() {
+  const isLowBandwidth =
+    document.documentElement.classList.contains("low-bandwidth");
+  const isSaveData = document.documentElement.classList.contains("save-data");
+
   // Add loading animation to images
   document.querySelectorAll("img").forEach((img) => {
     if (!img.complete) {
@@ -175,22 +221,37 @@ function initializeImageLoading() {
     }
   });
 
-  // Lazy loading
+  // Lazy loading with bandwidth awareness
   if ("IntersectionObserver" in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          // Only update src if data-src exists
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            // Only update src if data-src exists
+            if (img.dataset.src) {
+              // For low bandwidth, load lower quality images if available
+              if (isLowBandwidth && img.dataset.lowSrc) {
+                img.src = img.dataset.lowSrc;
+              } else {
+                img.src = img.dataset.src;
+              }
+            }
+            observer.unobserve(img);
           }
-          observer.unobserve(img);
-        }
-      });
-    });
+        });
+      },
+      {
+        // Adjust rootMargin based on bandwidth
+        rootMargin: isLowBandwidth ? "50px" : "200px",
+      }
+    );
 
     document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+      // Skip non-critical images in save-data mode
+      if (isSaveData && img.classList.contains("non-critical")) {
+        return;
+      }
       // Only observe images that have a data-src attribute
       if (img.dataset.src) {
         imageObserver.observe(img);
