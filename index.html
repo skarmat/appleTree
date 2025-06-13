@@ -32,7 +32,10 @@
       media="print"
       onload="this.media='all'"
     />
+    <!-- Load critical JavaScript immediately -->
     <script src="script.js" defer></script>
+    <!-- Preload non-critical JavaScript -->
+    <link rel="preload" href="script.js" as="script" />
   </head>
   <body class="font-sans">
     <!-- Navigation -->
