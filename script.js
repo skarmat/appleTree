@@ -167,6 +167,11 @@ function initializeImageLoading() {
         img.style.transition = "opacity 0.5s ease";
         img.style.opacity = "1";
       });
+      // Add error handling
+      img.addEventListener("error", () => {
+        console.warn(`Failed to load image: ${img.src}`);
+        img.style.opacity = "1"; // Show the image even if it fails to load
+      });
     }
   });
 
@@ -176,14 +181,20 @@ function initializeImageLoading() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target;
-          img.src = img.dataset.src;
+          // Only update src if data-src exists
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+          }
           observer.unobserve(img);
         }
       });
     });
 
     document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
-      imageObserver.observe(img);
+      // Only observe images that have a data-src attribute
+      if (img.dataset.src) {
+        imageObserver.observe(img);
+      }
     });
   }
 }
