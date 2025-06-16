@@ -357,19 +357,15 @@ p {
 /* Hero Section */
 .hero {
   position: relative;
-  height: 100vh;
   width: 100%;
+  height: 100vh;
   overflow: hidden;
-  margin-top: 0;
-  padding-top: 0;
 }
 
 .slider {
   position: relative;
-  height: 100vh;
   width: 100%;
-  will-change: transform;
-  transform: translateZ(0);
+  height: 100%;
 }
 
 .slide {
@@ -377,19 +373,13 @@ p {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 1.5s ease-in-out, transform 2s ease-in-out;
-  z-index: 1;
-  will-change: opacity;
-  transform: translateZ(0);
+  transition: opacity 0.5s ease-in-out;
 }
 
 .slide.active {
   opacity: 1;
-  transform: scale(1);
-  z-index: 2;
 }
 
 .hero-overlay {
@@ -404,7 +394,7 @@ p {
 
 .hero-image {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   filter: brightness(1);
@@ -930,6 +920,16 @@ footer a:hover {
 
 /* Responsive Design Enhancements */
 @media (max-width: 768px) {
+  .hero {
+    height: 100vh;
+    min-height: 100vh;
+  }
+
+  .hero-image {
+    height: 100%;
+    min-height: 100%;
+  }
+
   .hero-title {
     font-size: 2.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
